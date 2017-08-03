@@ -20,7 +20,7 @@ class ProductDetailViewController: UIViewController, ProductDetailView {
     
     //MARK: ProductDetailView
     
-    public func show(product: Product) {
+    func show(product: Product) {
         nameLabel.text = product.name
         descriptionLabel.text = product.description
         imageView.image = UIImage(named: product.image)
