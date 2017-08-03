@@ -6,6 +6,7 @@ class ProductsViewSpy: ProductsView {
     private(set) var hideLoadingStatusHasBeenCalled: Bool = false
     private(set) var showProductsHasBeenCalled: Bool = false
     private(set) var showsErrorMessageHasBeenCalled: Bool = false
+    private(set) var showDetailForProductHasBeenCalled: Bool = false
     
     func showLoadingStatus() {
         showLoadingStatusHasBeenCalled = true
@@ -19,7 +20,11 @@ class ProductsViewSpy: ProductsView {
         showProductsHasBeenCalled = true
     }
     
-    func showErrorMessage() {
+    func showErrorWith(message: String) {
         showsErrorMessageHasBeenCalled = true
+    }
+    
+    func showDetailFor(product: Product) {
+        showDetailForProductHasBeenCalled = true
     }
 }

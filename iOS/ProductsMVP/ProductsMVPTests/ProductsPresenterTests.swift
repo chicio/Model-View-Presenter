@@ -3,16 +3,16 @@ import XCTest
 @testable import ProductsMVP
 
 class ProductsPresenterTests: XCTestCase {
-    var productsRepositoryWithProducts: ProductsRepositoryWithProductsSpy!
-    var productsRepositoryWithoutProducts: ProductsRepositoryWithoutProductsSpy!
-    var productsView: ProductsViewSpy!
-    var productPresenter: ProductsPresenter!
+    private var productsRepositoryWithProducts: ProductsRepositoryWithProductsSpy!
+    private var productsRepositoryWithoutProducts: ProductsRepositoryWithoutProductsSpy!
+    private var productsView: ProductsViewSpy!
+    private var productPresenter: ProductsPresenter!
 
     func testOnStartWithProducts() {
         givenAProductsRepositoryWithProducts()
         givenAProductsView()
         givenAProductsPresenterWith(repository: productsRepositoryWithProducts)
-        whenTheProductsPresenterStart()
+        whenTheProductsPresenterStarts()
         thenTheProductViewShowsLoadingStatus()
         thenTryToRetrieveProduct()
         thenTheProductViewHidesLoadingStatus()
@@ -23,10 +23,26 @@ class ProductsPresenterTests: XCTestCase {
         givenAProductsRepositoryWithoutProducts()
         givenAProductsView()
         givenAProductsPresenterWith(repository: productsRepositoryWithoutProducts)
-        whenTheProductsPresenterStart()
+        whenTheProductsPresenterStarts()
         thenTheProductViewShowsLoadingStatus()
         thenTryToRetrieveProductFromEmptyRepository()
         thenTheProductViewHidesLoadingStatus()
+        thenTheProductsViewShowsAnErrorMessage()
+    }
+    
+    func testOnProductWithDescriptionSelected() {
+        givenAProductsRepositoryWithProducts()
+        givenAProductsView()
+        givenAProductsPresenterWith(repository: productsRepositoryWithProducts)
+        whenAProductWithDescriptionIsSelected()
+        thenTheProductDetailIsShown()
+    }
+    
+    func testOnProductWithoutDescriptionSelected() {
+        givenAProductsRepositoryWithProducts()
+        givenAProductsView()
+        givenAProductsPresenterWith(repository: productsRepositoryWithProducts)
+        whenAProductWithoutDescriptionIsSelected()
         thenTheProductsViewShowsAnErrorMessage()
     }
     
@@ -46,8 +62,20 @@ class ProductsPresenterTests: XCTestCase {
         productPresenter = ProductsPresenter(productsView: productsView, productsRepository: repository)
     }
     
-    private func whenTheProductsPresenterStart() {
+    private func whenTheProductsPresenterStarts() {
         productPresenter.onStart()
+    }
+    
+    func whenAProductWithDescriptionIsSelected() {
+        productPresenter.onSelected(product: Product(name: "Car",
+                                                     description: "A beautiful car",
+                                                     image: "car"))
+    }
+    
+    func whenAProductWithoutDescriptionIsSelected() {
+        productPresenter.onSelected(product: Product(name: "Car",
+                                                     description: "",
+                                                     image: "car"))
     }
     
     private func thenTryToRetrieveProduct() {
@@ -72,5 +100,9 @@ class ProductsPresenterTests: XCTestCase {
     
     private func thenTheProductsViewShowsAnErrorMessage() {
         XCTAssertTrue(productsView.showsErrorMessageHasBeenCalled)
+    }
+    
+    private func thenTheProductDetailIsShown() {
+        XCTAssertTrue(productsView.showDetailForProductHasBeenCalled)
     }
 }

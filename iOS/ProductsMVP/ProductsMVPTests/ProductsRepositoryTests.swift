@@ -19,7 +19,7 @@ class ProductsRepositoryTests: XCTestCase {
     }
     
     func whenTheRepositoryTryToRetrieveProducts(finish: @escaping ([Product]?, XCTestExpectation) -> Void) {
-        let repositoryExpectation = expectation(description: "foobar")
+        let repositoryExpectation = expectation(description: "RepositoryExpectation")
         productsRepository.get { products in
             finish(products, repositoryExpectation)
         }

@@ -19,9 +19,17 @@ public class ProductsPresenter {
     
     private func tryToShow(retrievedProducts: [Product]?) {
         if let products = retrievedProducts {
-            self.productsView.show(products: products)
+            productsView.show(products: products)
         } else {
-            self.productsView.showErrorMessage()
+            productsView.showErrorWith(message: "No products available")
+        }
+    }
+    
+    public func onSelected(product: Product) {
+        if product.description != "" {
+            productsView.showDetailFor(product: product)
+        } else {
+            productsView.showErrorWith(message: "Product without description")
         }
     }
 }
