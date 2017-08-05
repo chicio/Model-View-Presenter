@@ -18,7 +18,7 @@ In particular in this repo you will find the same application developed for vari
 
 ### Supported platform
 
-The application has been developed for:
+The application has been developed for various platform/language. At the moment you can find the implementation for:
 
-* iOS
-* Android
+* iOS using Swift
+* Android using Java
