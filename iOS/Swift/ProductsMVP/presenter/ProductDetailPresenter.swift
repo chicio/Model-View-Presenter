@@ -10,6 +10,7 @@ public class ProductDetailPresenter {
     }
     
     public func onStart() {
+        productDetailView.show(title: "Product")
         if let product = product {
             productDetailView.show(product: product)
         } else {

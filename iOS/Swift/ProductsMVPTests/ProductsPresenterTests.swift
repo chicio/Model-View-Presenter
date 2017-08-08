@@ -13,6 +13,7 @@ class ProductsPresenterTests: XCTestCase {
         givenAProductsView()
         givenAProductsPresenterWith(repository: productsRepositoryWithProducts)
         whenTheProductsPresenterStarts()
+        thenTheTitleIsDisplayed()
         thenTheProductViewShowsLoadingStatus()
         thenTryToRetrieveProduct()
         thenTheProductViewHidesLoadingStatus()
@@ -24,6 +25,7 @@ class ProductsPresenterTests: XCTestCase {
         givenAProductsView()
         givenAProductsPresenterWith(repository: productsRepositoryWithoutProducts)
         whenTheProductsPresenterStarts()
+        thenTheTitleIsDisplayed()
         thenTheProductViewShowsLoadingStatus()
         thenTryToRetrieveProductFromEmptyRepository()
         thenTheProductViewHidesLoadingStatus()
@@ -76,6 +78,10 @@ class ProductsPresenterTests: XCTestCase {
         productPresenter.onSelected(product: Product(name: "Car",
                                                      description: "",
                                                      image: "car"))
+    }
+    
+    private func thenTheTitleIsDisplayed() {
+        XCTAssertTrue(productsView.showTitleHasBeenCalled)
     }
     
     private func thenTryToRetrieveProduct() {

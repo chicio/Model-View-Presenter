@@ -20,13 +20,17 @@ class ProductDetailViewController: UIViewController, ProductDetailView {
     
     //MARK: ProductDetailView
     
-    func show(product: Product) {
+    public func show(title aTitle: String) {
+        title = aTitle
+    }
+    
+    public func show(product: Product) {
         nameLabel.text = product.name
         descriptionLabel.text = product.description
         imageView.image = UIImage(named: product.image)
     }
     
-    func showErrorWith(message: String) {
+    public func showErrorWith(message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [unowned self] action in
             self.dismiss(animated: true, completion: nil)

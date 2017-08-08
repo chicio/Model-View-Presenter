@@ -12,6 +12,7 @@ class ProductDetailPresenterTests: XCTestCase {
                                                           description: "aDescription",
                                                           image: "image"))
         whenThePresenterStarts()
+        thenTheTitleIsDisplayed()
         thenTheProductDetailIsShown()
     }
     
@@ -32,6 +33,10 @@ class ProductDetailPresenterTests: XCTestCase {
     
     private func whenThePresenterStarts() {
         productDetailPresenter.onStart()
+    }
+    
+    private func thenTheTitleIsDisplayed() {
+        XCTAssertTrue(productDetailView.showTitleHasBeenCalled)
     }
     
     private func thenTheProductDetailIsShown() {

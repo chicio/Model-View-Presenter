@@ -10,6 +10,7 @@ public class ProductsPresenter {
     }
     
     public func onStart() {
+        productsView.show(title: "Products")
         productsView.showLoadingStatus()
         productsRepository.get { [unowned self] retrievedProducts in
             self.tryToShow(retrievedProducts: retrievedProducts)

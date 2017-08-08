@@ -22,6 +22,10 @@ class ProductsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     //MARK: ProductsView
+    
+    public func show(title aTitle: String) {
+        title = aTitle
+    }
 
     public func showLoadingStatus() {
         productsActivityIndicator.startAnimating()

@@ -89,8 +89,8 @@
 			children = (
 				4569CE981F2D1A0F0087792B /* ProductsView.swift */,
 				4569CE991F2D1A0F0087792B /* ProductsViewController.swift */,
-				455F9C7E1F30E24A0089A988 /* ProductDetailViewController.swift */,
 				45103D261F33CF2B00F38EA6 /* ProductDetailView.swift */,
+				455F9C7E1F30E24A0089A988 /* ProductDetailViewController.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
