@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ProductMVP</string>
+    <string name="action_settings">Settings</string>
+    <string name="product_arrow">product_arrow</string>
+</resources>
