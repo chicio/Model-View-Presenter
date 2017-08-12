@@ -5,33 +5,25 @@
                                              android:orientation="vertical"
                                              android:layout_width="match_parent"
                                              android:layout_height="50dp"
-                                             android:background="@android:color/white">
+                                             android:background="@android:color/white"
+                                             android:layout_margin="0dp"
+                                             tools:layout_editor_absoluteY="81dp">
 
     <TextView
         android:id="@+id/product_name_text_view"
-        android:layout_width="329dp"
-        android:layout_height="41dp"
+        android:layout_width="348dp"
+        android:layout_height="39dp"
         android:gravity="center_vertical"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/imageView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="A product name"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginEnd="8dp"
-        app:srcCompat="@android:drawable/arrow_down_float"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/product_arrow"/>
+        app:layout_constraintVertical_bias="0.545"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:text="A product name"/>
 
 </android.support.constraint.ConstraintLayout>

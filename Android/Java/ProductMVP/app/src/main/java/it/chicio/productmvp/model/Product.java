@@ -1,11 +1,11 @@
-package it.chicio.productmvp;
+package it.chicio.productmvp.model;
 
-class Product {
+public class Product {
     private String name;
     private String description;
     private String image;
 
-    Product(String name, String description, String image) {
+    public Product(String name, String description, String image) {
         this.name = name;
         this.description = description;
         this.image = image;

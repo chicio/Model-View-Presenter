@@ -1,48 +1,43 @@
 package it.chicio.productmvp;
 
-import android.os.Handler;
-
 import org.junit.Test;
 import org.mockito.ArgumentMatchers;
 
-import java.util.Timer;
-import java.util.TimerTask;
+import it.chicio.productmvp.model.Product;
+import it.chicio.productmvp.model.ProductsRepository;
+import it.chicio.productmvp.model.ProductsRepositoryListener;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class ProductsRepositoryTest {
 
+    private ProductsRepositoryListener productsRepositoryListener;
+    private ProductsRepository productsRepository;
+
     @Test
     public void productsRetrieved() throws Exception {
-        Product[] products = { new Product("name", "description", "image") };
-        ProductsRepositoryListener productsRepositoryListener = mock(ProductsRepositoryListener.class);
-        ProductsRepository productsRepository = new ProductsRepository(productsRepositoryListener);
+        givenAProductListener();
+        givenAProductRepositoryWithAListener();
+        whenTheRepositoryTriesToGetTheProducts();
+        thenTheProductsRepositoryListenerIsNotified();
+    }
+
+    private void givenAProductRepositoryWithAListener() {
+        productsRepository = new ProductsRepository();
+        productsRepository.setListener(productsRepositoryListener);
+    }
+
+    private void givenAProductListener() {
+        productsRepositoryListener = mock(ProductsRepositoryListener.class);
+    }
+
+    private void whenTheRepositoryTriesToGetTheProducts() throws InterruptedException {
         productsRepository.get();
-        Thread.sleep(3000);
+        Thread.sleep(3100);
+    }
+
+    private void thenTheProductsRepositoryListenerIsNotified() {
         verify(productsRepositoryListener).onRetrieved(ArgumentMatchers.<Product[]>any());
-    }
-
-    private class ProductsRepository {
-        private ProductsRepositoryListener productsRepositoryListener;
-
-        ProductsRepository(ProductsRepositoryListener productsRepositoryListener) {
-            this.productsRepositoryListener = productsRepositoryListener;
-        }
-
-        void get() {
-            new Timer().schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    Product[] products = { new Product("name", "description", "image") };
-                    productsRepositoryListener.onRetrieved(products);
-                }
-            }, 2000);
-        }
-    }
-
-    private interface ProductsRepositoryListener {
-        void onRetrieved(Product[] products);
     }
 }
