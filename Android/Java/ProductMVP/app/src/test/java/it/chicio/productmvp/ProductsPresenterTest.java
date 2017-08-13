@@ -6,7 +6,6 @@ import it.chicio.productmvp.model.Product;
 import it.chicio.productmvp.model.Repository;
 import it.chicio.productmvp.presenter.ProductsPresenter;
 import it.chicio.productmvp.view.ProductsView;
-import it.chicio.productmvp.view.navigator.ProductsNavigator;
 
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -16,7 +15,6 @@ public class ProductsPresenterTest {
     private ProductsView productsView;
     private Repository productsRepository;
     private ProductsPresenter productsPresenter;
-    private ProductsNavigator productsNavigator;
     private final Product[] products  = new Product[]{new Product("aName", "aDescription", "anImage")};
     private final Product product  = new Product("aName", "aDescription", "anImage");
 
@@ -56,14 +54,9 @@ public class ProductsPresenterTest {
     public void onProductSelectedWithDescription() throws Exception {
         givenAProductsRepository();
         givenAProductsView();
-        givenAProductsNavigator();
         givenAProductsPresenter();
-        productsPresenter.onSelected(product);
-        verify(productsView).showDetailFor(product);
-    }
-
-    private void givenAProductsNavigator() {
-        productsNavigator = mock(ProductsNavigator.class);
+        whenAProductIsSelected();
+        thenTheViewShowsTheProductDetail();
     }
 
     private void givenAProductsPresenter() {
@@ -88,6 +81,10 @@ public class ProductsPresenterTest {
 
     private void whenTheProductsHaveNotBeenRetrieved() {
         productsPresenter.onRetrieved(null);
+    }
+
+    private void whenAProductIsSelected() {
+        productsPresenter.onSelected(product);
     }
 
     private void thenTheTitleIsDisplayed() {
@@ -116,5 +113,9 @@ public class ProductsPresenterTest {
 
     private void thenTheProductsViewShowsAnErrorMessage() {
         verify(productsView).showErrorWith(anyString());
+    }
+
+    private void thenTheViewShowsTheProductDetail() {
+        verify(productsView).showDetailFor(product);
     }
 }

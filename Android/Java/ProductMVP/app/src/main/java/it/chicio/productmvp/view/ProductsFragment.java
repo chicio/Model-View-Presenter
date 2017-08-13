@@ -43,6 +43,11 @@ public class ProductsFragment extends Fragment implements ProductsView {
         super.onViewCreated(view, savedInstanceState);
         bindViews();
         initializeDependencies();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         productsPresenter.onStart();
     }
 

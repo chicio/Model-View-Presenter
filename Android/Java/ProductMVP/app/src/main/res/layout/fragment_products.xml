@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="it.chicio.productmvp.view.ProductsFragment"
-    tools:showIn="@layout/activity_products">
+    tools:context="it.chicio.productmvp.view.ProductsFragment">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/products_recycler_view"
         android:background="@android:color/darker_gray"

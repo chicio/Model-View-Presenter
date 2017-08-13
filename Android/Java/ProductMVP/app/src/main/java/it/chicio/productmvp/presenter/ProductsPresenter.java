@@ -28,22 +28,26 @@ public class ProductsPresenter implements ProductsRepositoryListener {
     }
 
     private void tryToShowTheProducts(Product[] products) {
-        if (products != null) {
+        if (isValidProduct(products)) {
             productsView.show(products);
         } else {
             productsView.showErrorWith("No products available");
         }
     }
 
+    private boolean isValidProduct(Product[] products) {
+        return products != null;
+    }
+
     public void onSelected(Product product) {
-        if (isValidProduct(product)) {
+        if (hasValidDescription(product)) {
             productsView.showDetailFor(product);
         } else {
             productsView.showErrorWith("Product without description");
         }
     }
 
-    private boolean isValidProduct(Product product) {
+    private boolean hasValidDescription(Product product) {
         return !product.getDescription().equals("");
     }
 }
