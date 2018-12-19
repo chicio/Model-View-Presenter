@@ -1,7 +1,7 @@
 import Foundation
 
 public class ProductsPresenter {
-    private let productsView: ProductsView
+    private unowned let productsView: ProductsView
     private let productsRepository: Repository
     
     public init(productsView: ProductsView, productsRepository: Repository) {

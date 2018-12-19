@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol ProductsView {
+public protocol ProductsView: class {
     func showLoadingStatus()
     func hideLoadingStatus()
     func show(title aTitle: String)
